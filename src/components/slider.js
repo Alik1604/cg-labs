@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-const Slider = ({ onSliderChange }) => {
-  const defaultSliderValue = 100
+const Slider = ({ min, max, defaultValue, onSliderChange }) => {
+  const defaultSliderValue = defaultValue
   const [sliderValue, setSliderValue] = useState(defaultSliderValue);
 
   const handleSliderChange = (event) => {
@@ -20,8 +20,8 @@ const Slider = ({ onSliderChange }) => {
     }}>
       <input
         type="range"
-        min={1}
-        max={1000}
+        min={min}
+        max={max}
         value={sliderValue}
         onChange={handleSliderChange}
         style={{
