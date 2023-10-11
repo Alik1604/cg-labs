@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { fillTriangle, rotateVector, getSides } from "./triangle.js";
 
 const FractalCanvas = ({scale, dx, dy}) => {
   const canvasRef = useRef(null);
@@ -14,26 +15,29 @@ const FractalCanvas = ({scale, dx, dy}) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    drawSinFractal(ctx, canvasWidth, canvasHeight, 256, scale, dx, dy);
+    drawFractal(ctx, canvasWidth, canvasHeight, 256, scale, dx, dy);
   }, [scale, dx, dy]);
 
-  return (<canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} />);
+  return (<canvas ref={canvasRef} width={canvasWidth} height={canvasHeight}/>);
 };
 
 export default FractalCanvas;
 
-function drawSinFractal(ctx, canvasWidth, canvasHeight, iterations, scale, dx, dy) {
+function drawFractal(ctx, canvasWidth, canvasHeight, iterations, scale, dx, dy) {
   const iters = {
     i: iterations,
     i1: Math.pow(iterations, 1.1),
     i2: Math.pow(iterations, 1.2)
   }
 
-  const offsetX = canvasWidth / 2; // Зміщення по горизонталі
-  const offsetY = canvasHeight / 2; // Зміщення по вертикалі
+  algebraic(canvasWidth, canvasHeight, ctx, scale, iterations, dx, dy)
+  
+  // geometrical(ctx, 150, canvasWidth, canvasHeight, 8, scale, dx, dy)
+}
 
-
-
+function algebraic(canvasWidth, canvasHeight, ctx, scale, iterations, dx, dy) {
+  const offsetX = canvasWidth / 2; 
+  const offsetY = canvasHeight / 2; 
   for (let x = 0; x < canvasWidth; x++) {
     for (let y = 0; y < canvasHeight; y++) {
       const a = (x - offsetX) / scale + canvasWidth / 2 / 100 * dx / 100;
@@ -42,7 +46,6 @@ function drawSinFractal(ctx, canvasWidth, canvasHeight, iterations, scale, dx, d
       const t = fractal1(a, b, iterations);
 
       // ctx.fillStyle = getColor(za, zb, n, iters, (2.0 * t + 0.5) % 1.0);
-      // console.log(t);
       ctx.fillStyle = hsvToRgb(t.n, t.iterations, t.z)
       ctx.fillRect(x, y, 1, 1);
     }
@@ -98,6 +101,71 @@ function fractal2(a, b, iterations) {
     n: n,
     iterations: iterations,
     z: z
+  }
+}
+
+function geometrical(ctx, triangleSize, canvasWidth, canvasHeight, iterations, scale, dx, dy) {
+  const centerX = canvasWidth / 2 + canvasWidth * dx / 20000 * scale;
+  const centerY = canvasHeight / 2 + canvasHeight * dy / 20000 * scale;
+
+  const rTSize = triangleSize * scale / 100
+
+  const v = {
+    x: 0,
+    y: rTSize * Math.sqrt(3) / 6 
+  }
+  const triangle = fillTriangle({
+    center: {
+      x: centerX,
+      y: centerY
+    },
+    v1: rotateVector(v, 0),
+    v2: rotateVector(v, 120),
+    v3: rotateVector(v, 240),
+    vx1: { x: 0, y: 0 },
+    vx2: { x: 0, y: 0 },
+    vx3: { x: 0, y: 0 },
+  })
+
+  ctx.strokeStyle = "black"
+  ctx.fillRect(0, 0, canvasWidth, canvasHeight)
+  ctx.strokeStyle = "white"
+  ctx.lineWidth = 1
+
+  const sides = getSides(triangle)
+
+  geomIterate(ctx, sides.s1, iterations)
+  geomIterate(ctx, sides.s2, iterations)
+  geomIterate(ctx, sides.s3, iterations)
+}
+
+function geomIterate(ctx, side, iterations) {
+  if (iterations == 0) {
+    ctx.beginPath()
+    ctx.moveTo(side.vx.x, side.vx.y)
+    ctx.lineTo(side.vx.x + side.v.x, side.vx.y + side.v.y)
+    ctx.stroke()
+  } else {
+    geomIterate(ctx, {
+      vx: { x: side.vx.x, y: side.vx.y },
+      v: { x: side.v.x / 3, y: side.v.y / 3 }
+    }, iterations - 1)
+
+    const rotatedVectorByM60 = rotateVector({ x: side.v.x / 3, y: side.v.y / 3 }, -60)
+    geomIterate(ctx, {
+      vx: { x: side.vx.x + side.v.x / 3, y: side.vx.y + side.v.y / 3 },
+      v: rotatedVectorByM60
+    }, iterations - 1)
+
+    geomIterate(ctx, {
+      vx: { x: side.vx.x + side.v.x / 3 + rotatedVectorByM60.x, y: side.vx.y + side.v.y / 3 + rotatedVectorByM60.y },
+      v: rotateVector({ x: side.v.x / 3, y: side.v.y / 3 }, 60)
+    }, iterations - 1)
+
+    geomIterate(ctx, {
+      vx: { x: side.vx.x + side.v.x * 2 / 3, y: side.vx.y + side.v.y * 2 / 3},
+      v: { x: side.v.x / 3, y: side.v.y / 3 }
+    }, iterations - 1)
   }
 }
 
