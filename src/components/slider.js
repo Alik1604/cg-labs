@@ -15,7 +15,7 @@ const Slider = ({ min, max, defaultValue, onSliderChange }) => {
   }, [])
 
   return (
-    <div style ={{
+    <div style={{
       padding: 16
     }}>
       <input
