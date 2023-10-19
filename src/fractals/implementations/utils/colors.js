@@ -112,7 +112,7 @@ export function getAlgebraicColor(n, iterations) {
     const green = 160 * 2.5 / Math.sqrt(2 * Math.PI) * Math.pow(Math.E, -Math.pow(x - 0.25, 2) * 6)
     const blue = 255 * (0.5 - Math.log2(x + 0.2))
 
-    console.log("x: " + x + " red: " + red + " green: " + green + " blue: " + blue)
+    // console.log("x: " + x + " red: " + red + " green: " + green + " blue: " + blue)
 
     return `rgb(${red}, ${green}, ${blue})`
 }
