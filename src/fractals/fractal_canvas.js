@@ -7,8 +7,6 @@ const FractalCanvas = ({ scale, dx, dy, type, palette }) => {
   const canvasHeight = 600;
   const canvasWidth = 600;
 
-  const [oldScale, setScale] = useState(scale);
-
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
