@@ -7,25 +7,26 @@ export function drawAlgebraic(
   scale,
   dx,
   dy,
-  iterations
+  iterations,
+  type,
+  palette
 ) {
   const offsetX = canvasWidth / 2;
   const offsetY = canvasHeight / 2;
 
   for (let x = 0; x < canvasWidth; x++) {
     for (let y = 0; y < canvasHeight; y++) {
-
       const a = (x - offsetX) / scale + (canvasWidth * dx) / 20000;
       const b = (y - offsetY) / scale + (canvasHeight * dy) / 20000;
 
-            const t = fractal1(a, b, iterations);
+      const t = type === "a1" ? fractal1(a, b, iterations) : fractal2(a, b, iterations);
 
-            // ctx.fillStyle = getColor(za, zb, n, iters, (2.0 * t + 0.5) % 1.0);
-            // ctx.fillStyle = hsvToRgb(t.n, t.iterations, t.z)
-            ctx.fillStyle = getAlgebraicColor(t.n, t.iterations)
-            ctx.fillRect(x, y, 1, 1);
-        }
+      // ctx.fillStyle = getColor(za, zb, n, iters, (2.0 * t + 0.5) % 1.0);
+      // ctx.fillStyle = hsvToRgb(t.n, t.iterations, t.z)
+      ctx.fillStyle = getAlgebraicColor(t.n, t.iterations, palette);
+      ctx.fillRect(x, y, 1, 1);
     }
+  }
 }
 
 function fractal1(a, b, iterations) {
@@ -38,9 +39,9 @@ function fractal1(a, b, iterations) {
   while (n < iterations) {
     z = addz(mulz(z, sinz(z)), c);
 
-        if (modz(z) < 0.001 || modz(z) > 16) {
-            break;
-        }
+    if (modz(z) < 0.001 || modz(z) > 16) {
+      break;
+    }
 
     n++;
   }
@@ -65,9 +66,9 @@ function fractal2(a, b, iterations) {
     // z = mulz(c, sinz(z))
     // z = divz(cosz(z), sinz(z))
 
-        if (modz(z) < 0.001 || modz(z) > 4) {
-            break;
-        }
+    if (modz(z) < 0.001 || modz(z) > 5) {
+      break;
+    }
 
     n++;
   }

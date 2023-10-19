@@ -11,6 +11,7 @@ export default function Home() {
   const [dxValue, setDx] = useState(0);
   const [dyValue, setDy] = useState(0);
   const [type, setType] = useState("geometrical");
+  const [palette, setPalette] = useState(0);
 
   return (
     <main className="flex min-h-screen flex-row bg-white">
@@ -59,28 +60,28 @@ export default function Home() {
             dx={dxValue}
             dy={dyValue}
             type={type}
+            palette={palette}
           />
         </div>
         <div className="ml-12">
           <Dropdown label="Оберіть тип фракталу">
-            <Dropdown.Item onClick={() => setType("geometrical")}>
-              Geometrical
+            <Dropdown.Item onClick={() => setType("g")}>
+              Крижаний трикутний
             </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() => {
-                setType("algebraic");
-                console.log(type);
-              }}
-            >
-              Algebraic-1
+            <Dropdown.Item onClick={() => setType("a1")} >
+              Типу z*sin(z) + c
             </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() => {
-                setType("algebraic");
-                console.log(type);
-              }}
-            >
-              Algebraic-2
+            <Dropdown.Item onClick={() => setType("a2")}>
+              Типу c*ctg(z)
+            </Dropdown.Item>
+          </Dropdown>
+          <br/>
+          <Dropdown label="Оберіть палітру">
+            <Dropdown.Item onClick={() => setPalette(0)}>
+              Синя глазурь
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setPalette(1)}>
+              Квітковий сад
             </Dropdown.Item>
           </Dropdown>
 

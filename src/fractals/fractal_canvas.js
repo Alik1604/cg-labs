@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { drawGeometrical } from "./implementations/geometrical.js";
 import { drawAlgebraic } from "./implementations/algebraic.js";
 
-const FractalCanvas = ({ scale, dx, dy, type }) => {
+const FractalCanvas = ({ scale, dx, dy, type, palette }) => {
   const canvasRef = useRef(null);
   const canvasHeight = 600;
   const canvasWidth = 600;
@@ -16,8 +16,8 @@ const FractalCanvas = ({ scale, dx, dy, type }) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    drawFractal(ctx, canvasWidth, canvasHeight, 256, scale, dx, dy, type);
-  }, [scale, dx, dy, type]);
+    drawFractal(ctx, canvasWidth, canvasHeight, 256, scale, dx, dy, type, palette);
+  }, [scale, dx, dy, type, palette]);
 
   const handleSave = () => {
     const canvas = canvasRef.current;
@@ -60,17 +60,13 @@ function drawFractal(
   scale,
   dx,
   dy,
-  type
+  type,
+  palette
 ) {
-  const iters = {
-    i: iterations,
-    i1: Math.pow(iterations, 1.1),
-    i2: Math.pow(iterations, 1.2),
-  };
 
-  if (type === "geometrical") {
+  if (type === "g") {
     drawGeometrical(ctx, 200, canvasWidth, canvasHeight, 5, scale, dx, dy, 90);
   } else {
-    drawAlgebraic(ctx, canvasWidth, canvasHeight, scale, dx, dy, iterations);
+    drawAlgebraic(ctx, canvasWidth, canvasHeight, scale, dx, dy, iterations, type, palette);
   }
 }

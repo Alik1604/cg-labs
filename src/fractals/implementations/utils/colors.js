@@ -100,7 +100,7 @@ export function hsvToRgb(n, iterations, z) {
     return `rgb(${green * rbin * alpha}, ${red * gbin * alpha}, ${blue * bbin * alpha})`
 }
 
-export function getAlgebraicColor(n, iterations) {
+export function getAlgebraicColor(n, iterations, palette) {
     const a = 10
     const bx = n / iterations * a
     // const x = n / iterations
@@ -108,9 +108,19 @@ export function getAlgebraicColor(n, iterations) {
     x = x > 1 ? 1 : x
     x = x < 0 ? 0 : x
 
-    const red = 255 * (Math.sqrt(x) + 0.55)
-    const green = 160 * 2.5 / Math.sqrt(2 * Math.PI) * Math.pow(Math.E, -Math.pow(x - 0.25, 2) * 6)
-    const blue = 255 * (0.5 - Math.log2(x + 0.2))
+    let red;
+    let green;
+    let blue;
+
+    if (palette === 0) {
+        red = 255 * (Math.sqrt(x) + 0.55)
+        green = 160 * 2.5 / Math.sqrt(2 * Math.PI) * Math.pow(Math.E, -Math.pow(x - 0.25, 2) * 6)
+        blue = 255 * (0.5 - Math.log2(x + 0.2))
+    } else {
+        red = 255 * (0.5 - Math.log2(x + 0.2))
+        green = 255 * (Math.sqrt(x) + 0.55)
+        blue = 160 * 2.5 / Math.sqrt(2 * Math.PI) * Math.pow(Math.E, -Math.pow(x - 0.25, 2) * 6)
+    }
 
     // console.log("x: " + x + " red: " + red + " green: " + green + " blue: " + blue)
 
