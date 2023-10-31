@@ -10,7 +10,7 @@ export default function Home() {
   const [scaleValue, setScaleValue] = useState(0);
   const [dxValue, setDx] = useState(0);
   const [dyValue, setDy] = useState(0);
-  const [type, setType] = useState("geometrical");
+  const [type, setType] = useState("g");
   const [palette, setPalette] = useState(0);
 
   return (
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+      
       <div className="flex min-h-screen w-[80%] bg-[#108A000D] justify-center items-center p-12">
         <div className=" w-[80%] h-[100%] items-center justify-center flex">
           <FractalCanvas
@@ -68,14 +68,14 @@ export default function Home() {
             <Dropdown.Item onClick={() => setType("g")}>
               Крижаний трикутний
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => setType("a1")} >
+            <Dropdown.Item onClick={() => setType("a1")}>
               Типу z*sin(z) + c
             </Dropdown.Item>
             <Dropdown.Item onClick={() => setType("a2")}>
               Типу c*ctg(z)
             </Dropdown.Item>
           </Dropdown>
-          <br/>
+          <br />
           <Dropdown label="Оберіть палітру">
             <Dropdown.Item onClick={() => setPalette(0)}>
               Синя глазурь

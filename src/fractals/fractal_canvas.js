@@ -63,7 +63,7 @@ function drawFractal(
 ) {
 
   if (type === "g") {
-    drawGeometrical(ctx, 200, canvasWidth, canvasHeight, 5, scale, dx, dy, 90);
+    drawGeometrical(ctx, 200, canvasWidth, canvasHeight, 5, scale, dx, dy, 172);
   } else {
     drawAlgebraic(ctx, canvasWidth, canvasHeight, scale, dx, dy, iterations, type, palette);
   }
