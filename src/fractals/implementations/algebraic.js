@@ -118,5 +118,5 @@ function divz(z1, z2) {
 }
 
 function modz(z) {
-  return z.x * z.x + z.y * z.y;
+  return z.x * z.x + z.y * z.y
 }
