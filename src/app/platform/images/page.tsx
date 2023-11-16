@@ -12,7 +12,7 @@ import {
   drawPixelsArrayOnCanvas,
 } from "@/images/utils/pixels_changer";
 
-const maxCanvasWidth = 640;
+const maxCanvasWidth = 500;
 const maxCanvasHeight = 360;
 
 const Images: React.FC = () => {
@@ -185,12 +185,18 @@ const Images: React.FC = () => {
       <Navigation />
 
       <div
-        className="flex-grow p-12"
+        className="flex flex-col flex-grow p-12"
         style={{
           color: "black",
         }}
       >
-        <input type="file" accept="image/*" onChange={handleImageUpload} />
+        <input
+          placeholder="Оберіть файл"
+          className="rounded"
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+        />
         <br />
         <br />
         <div>
@@ -213,6 +219,7 @@ const Images: React.FC = () => {
         </div>
         <div className="flex justify-between my-4">
           <div>
+            <p className="mb-2">Зображення в HSV</p>
             <canvas
               style={{
                 maxWidth: maxCanvasWidth,
@@ -224,6 +231,7 @@ const Images: React.FC = () => {
             <p ref={textRef1}></p>
           </div>
           <div>
+            <p className="mb-2">Зображення в RGB</p>
             <canvas
               style={{
                 maxWidth: maxCanvasWidth,

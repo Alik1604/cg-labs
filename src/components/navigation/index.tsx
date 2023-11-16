@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function Navigation() {
   return (
-    <div className="flex min-h-screen w-[20%] flex-col p-6 justify-between">
+    <div className="flex min-h-screen w-[20%] flex-col p-4 justify-between">
       <div className="flex flex-col space-y-4">
         <button className="bg-white p-2  text-[#108A00] rounded-xl border border-[#108A00]">
           Student for student
