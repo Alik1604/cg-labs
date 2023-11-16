@@ -18,9 +18,7 @@ export class Pixel {
 
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
-    let h,
-      s,
-      v = max;
+    let h, s, v = max;
 
     const d = max - min;
     s = max === 0 ? 0 : d / max;
