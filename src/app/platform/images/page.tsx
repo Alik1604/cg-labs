@@ -25,8 +25,8 @@ const Images: React.FC = () => {
   const [selectedArea, setSelectedArea] = useState<object>({
     x: 0,
     y: 0,
-    width: 0,
-    height: 0,
+    width: maxCanvasWidth,
+    height: maxCanvasHeight,
   });
   const canvasRef1 = useRef<HTMLCanvasElement>(null);
   const canvasRef2 = useRef<HTMLCanvasElement>(null);
@@ -64,6 +64,13 @@ const Images: React.FC = () => {
 
             ctx1.drawImage(image, 0, 0);
             ctx2.drawImage(image, 0, 0);
+
+            setSelectedArea({
+              x: 0,
+              y: 0,
+              width: image.width,
+              height: image.height,
+            });
 
             const pixelsArray = initializePixelArray(
               ctx1,
@@ -216,6 +223,31 @@ const Images: React.FC = () => {
             defaultValue={value}
             onSliderChange={(newValue: number) => setValue(newValue)}
           />
+        </div>
+        <div>
+          <button
+            className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+            type="button"
+            onClick={() => {
+              if (defaultImage) {
+                setSelectedArea({
+                  x: 0,
+                  y: 0,
+                  width: defaultImage.width,
+                  height: defaultImage.height,
+                });
+              } else {
+                setSelectedArea({
+                  x: 0,
+                  y: 0,
+                  width: maxCanvasWidth,
+                  height: maxCanvasHeight,
+                });
+              }
+            }}
+          >
+            Clear selection
+          </button>
         </div>
         <div className="flex justify-between my-4">
           <div>
