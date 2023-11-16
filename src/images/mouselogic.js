@@ -38,8 +38,8 @@ export function addMouseListenerToCanvasHSV(
   canvasRef.addEventListener("mousemove", (event) => {
     const mousePos = getMousePos(canvasRef, event);
 
-    const x = parseInt(mousePos.x * widthCoef);
-    const y = parseInt(mousePos.y * heightCoef);
+    const x = parseInt(mousePos.x);
+    const y = parseInt(mousePos.y);
 
     if (isDragging) {
       endX = x;
@@ -48,8 +48,8 @@ export function addMouseListenerToCanvasHSV(
       const selectedArea = {
         x: Math.min(startX, endX),
         y: Math.min(startY, endY),
-        width: Math.abs(startX - endX),
-        height: Math.abs(startY - endY),
+        width: Math.abs((startX - endX) * heightCoef),
+        height: Math.abs((startY - endY) * heightCoef),
       };
       setSelectedArea(selectedArea);
 

@@ -18,7 +18,7 @@ export function getNewPixelsArray(
 
       const pixel = rgbPixel.asHSV();
 
-      if (pixel.h > 340 || pixel.h < 20) {
+      if (pixel.h > 330 || pixel.h < 30) {
         pixel.s *= saturation / 100;
         pixel.v *= value / 100;
       }

@@ -12,7 +12,7 @@ import {
   drawPixelsArrayOnCanvas,
 } from "@/images/utils/pixels_changer";
 
-const maxCanvasWidth = 500;
+const maxCanvasWidth = 640;
 const maxCanvasHeight = 360;
 
 const Images: React.FC = () => {
