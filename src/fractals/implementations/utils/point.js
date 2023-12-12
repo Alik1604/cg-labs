@@ -16,4 +16,15 @@ export class Point {
     shorten(sub) {
         return new Point(this.x / sub, this.y / sub)
     }
+
+    add(to, by) {
+        const a = to.x - this.x
+        const b = to.y - this.y
+        const cBy = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) / by
+
+        return new Point(
+            this.x + a / cBy,
+            this.y + b / cBy
+        )
+    }
 }
