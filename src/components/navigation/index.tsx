@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function Navigation() {
   return (
@@ -8,22 +9,30 @@ function Navigation() {
         <button className="bg-white p-2  text-[#108A00] rounded-xl border border-[#108A00]">
           Student for student
         </button>
-        <button className="bg-[#108A00] p-4 flex flex-row gap-3  rounded-xl border border-[#108A00] items-center">
-          <Image src="/icons/fractal-1.svg" alt="" width={24} height={24} />
-          <p className="text-white">Генератор фракталів</p>
-        </button>
-        <button className="bg-white p-4 flex flex-row gap-3 text-white rounded-xl border border-[#108A00] items-center">
-          <Image src="/icons/image.svg" alt="" width={24} height={24} />
-          <p className="text-black">Редактор картинок</p>
-        </button>
-        <button className="bg-white p-4 flex flex-row gap-3 text-white rounded-xl border border-[#108A00] items-center">
-          <Image src="/icons/transform.svg" alt="" width={24} height={24} />
-          <p className="text-black">Ручні зображення</p>
-        </button>
-        <button className="bg-white p-4 flex flex-row gap-3 text-white rounded-xl border border-[#108A00] items-center">
-          <Image src="/icons/materials.svg" alt="" width={24} height={24} />
-          <p className="text-black">Навчальні матеріали</p>
-        </button>
+        <Link href="/" className="flex">
+          <button className="bg-white p-4 flex flex-grow flex-row gap-3 text-white rounded-xl border border-[#108A00] items-center">
+            <Image src="/icons/fractal.svg" alt="" width={24} height={24} />
+            <p className="text-black">Генератор фракталів</p>
+          </button>
+        </Link>
+        <Link href="/platform/images" className="flex">
+          <button className="bg-white p-4 flex flex-grow flex-row gap-3 text-white rounded-xl border border-[#108A00] items-center">
+            <Image src="/icons/image.svg" alt="" width={24} height={24} />
+            <p className="text-black">Редактор картинок</p>
+          </button>
+        </Link>
+        <Link href="/platform/transformations" className="flex">
+          <button className="bg-white p-4 flex flex-grow flex-row gap-3 text-white rounded-xl border border-[#108A00] items-center">
+            <Image src="/icons/transform.svg" alt="" width={24} height={24} />
+            <p className="text-black">Ручні зображення</p>
+          </button>
+        </Link>
+        <Link href="/platform/materials" className="flex">
+          <button className="bg-white p-4 flex flex-grow flex-row gap-3 text-white rounded-xl border border-[#108A00] items-center">
+            <Image src="/icons/materials.svg" alt="" width={24} height={24} />
+            <p className="text-black">Навчальні матеріали</p>
+          </button>
+        </Link>
       </div>
 
       <div className="mt-auto flex items-center">
