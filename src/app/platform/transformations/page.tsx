@@ -14,7 +14,7 @@ const AffineTransformations = () => {
     height: 540,
   };
 
-  const framesPerSecond = 10;
+  const framesPerSecond = 15;
   const delayRef = useRef(0);
   const animationStarted = useRef(false);
 

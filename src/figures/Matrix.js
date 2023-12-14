@@ -16,12 +16,6 @@ function multiply(a, b) {
     return m;
 }
 
-function display(m) {
-    for (let r = 0; r < m.length; ++r) {
-        document.write('&nbsp;&nbsp;' + m[r].join(' ') + '<br />');
-    }
-}
-
 const translationMatrix = (x, y) => {
     return [
         [1, 0, 0],
@@ -47,12 +41,18 @@ const mirrorMatrix = () => {
 }
 
 const getResultMatrix = (x, y, scaleX, scaleY, isMirrored) => {
-    return multiply(
-        mirrorMatrix(),
+    return !isMirrored ? multiply(
         multiply(
             translationMatrix(x, y),
             scaleMatrix(scaleX, scaleY)
-        )
+        ),
+        mirrorMatrix()
+    ) : multiply(
+        multiply(
+            translationMatrix(y, x),
+            scaleMatrix(scaleX, scaleY)
+        ),
+        mirrorMatrix()
     )
 }
 
