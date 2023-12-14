@@ -51,6 +51,7 @@ export default function Home() {
             </Dropdown.Item>
           </Dropdown>
 
+          <p className="mt-4 ml-4">{"Маcштабування"}</p>
           <Slider
             min={1}
             max={10000}
@@ -59,6 +60,7 @@ export default function Home() {
               setScaleValue(newValue);
             }}
           />
+          <p className="ml-4">X</p>
           <Slider
             min={-100}
             max={100}
@@ -67,6 +69,7 @@ export default function Home() {
               setDx(dxValue);
             }}
           />
+          <p className="ml-4">Y</p>
           <Slider
             min={-100}
             max={100}

@@ -26,12 +26,12 @@ const AffineTransformations = () => {
     scaleY: 1,
   });
   const [triangleInputs, setTriangleInputs] = useState({
-    ax: 1,
-    ay: -1,
-    bx: 2,
-    by: 2,
-    cx: 3,
-    cy: -3,
+    ax: 0,
+    ay: 0,
+    bx: 0,
+    by: 0,
+    cx: 0,
+    cy: 0,
     x: 0,
     y: 0,
     scaleX: 1,
@@ -167,6 +167,17 @@ const AffineTransformations = () => {
   const stopAnimation = () => {
     animationStarted.current = false;
     setAnimationStartedForUi(false);
+  };
+
+  const handleSave = () => {
+    const canvas = canvasRef.current as any;
+    if (!canvas) return;
+
+    const imageUrl = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = imageUrl;
+    a.download = "fractal.png";
+    a.click();
   };
 
   useEffect(() => {
@@ -308,7 +319,7 @@ const AffineTransformations = () => {
           />
           <br />
           <div className="flex gap-4">
-            <Button>Зберегти</Button>
+            <Button onClick={handleSave}>Зберегти</Button>
           </div>
         </div>
         <div className="space-y-4 text-black border p-3">

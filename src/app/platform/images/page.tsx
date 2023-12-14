@@ -12,6 +12,7 @@ import {
   drawPixelsArrayOnCanvas,
 } from "@/images/utils/pixels_changer";
 import ChatComponent from "@/components/chat";
+import { Button } from "flowbite-react";
 
 const maxCanvasWidth = 640;
 const maxCanvasHeight = 360;
@@ -219,7 +220,7 @@ const Images: React.FC = () => {
         <br />
         <br />
         <div>
-          <p>Saturation: {saturation}</p>
+          <p>Насиченість: {saturation}</p>
           <Slider
             min={0}
             max={100}
@@ -228,7 +229,7 @@ const Images: React.FC = () => {
           />
         </div>
         <div>
-          <p>Value: {value}</p>
+          <p>Інтенсивність: {value}</p>
           <Slider
             min={0}
             max={100}
@@ -236,10 +237,8 @@ const Images: React.FC = () => {
             onSliderChange={(newValue: number) => setValue(newValue)}
           />
         </div>
-        <div>
-          <button
-            className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
-            type="button"
+        <div className="flex gap-4">
+          <Button
             onClick={() => {
               if (defaultImage) {
                 setSelectedArea({
@@ -259,14 +258,12 @@ const Images: React.FC = () => {
             }}
           >
             Очистити
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={handleSave}
-            type="button"
-            className="w-[100px] h-[40px] focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
           >
             Зберегти
-          </button>
+          </Button>
         </div>
         <div className="flex justify-between my-4">
           <div>

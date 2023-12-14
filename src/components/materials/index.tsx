@@ -4,6 +4,7 @@ import Confetti from "react-confetti";
 
 export default function Materials({ data }: any) {
   const [showConfetti, setShowConfetti] = useState(false);
+  const [cur, setCur] = useState("");
 
   const handleAnswerClick = (isCorrect: any) => {
     if (isCorrect) {
@@ -35,11 +36,18 @@ export default function Materials({ data }: any) {
               <ul>
                 {Object.entries(test.options).map(([key, value]: any, i) => (
                   <li
-                    className="cursor-pointer mt-2"
+                    className={`cursor-pointer mt-2 ${
+                      cur + i === test.correctAnswer + i &&
+                      key === test.correctAnswer
+                        ? " text-green-700"
+                        : "text-black"
+                    }`}
                     key={i}
-                    onClick={() =>
-                      handleAnswerClick(key === test.correctAnswer)
-                    }
+                    onClick={() => {
+                      console.log(key);
+                      handleAnswerClick(key === test.correctAnswer);
+                      setCur(key);
+                    }}
                   >
                     {key}: {value}
                   </li>

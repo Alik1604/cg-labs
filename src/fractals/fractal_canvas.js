@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { drawGeometrical } from "./implementations/geometrical.js";
 import { drawAlgebraic } from "./implementations/algebraic.js";
+import { Button } from "flowbite-react";
 
 const FractalCanvas = ({ scale, dx, dy, type, palette }) => {
   const canvasRef = useRef(null);
@@ -14,7 +15,17 @@ const FractalCanvas = ({ scale, dx, dy, type, palette }) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    drawFractal(ctx, canvasWidth, canvasHeight, 256, scale, dx, dy, type, palette);
+    drawFractal(
+      ctx,
+      canvasWidth,
+      canvasHeight,
+      256,
+      scale,
+      dx,
+      dy,
+      type,
+      palette
+    );
   }, [scale, dx, dy, type, palette]);
 
   const handleSave = () => {
@@ -37,13 +48,7 @@ const FractalCanvas = ({ scale, dx, dy, type, palette }) => {
         height={canvasHeight}
       />
 
-      <button
-        onClick={handleSave}
-        type="button"
-        className="w-[150px] h-[40px] focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-      >
-        Зберегти фрактал
-      </button>
+      <Button onClick={handleSave}>Зберегти фрактал</Button>
     </div>
   );
 };
@@ -61,10 +66,19 @@ function drawFractal(
   type,
   palette
 ) {
-
   if (type === "g") {
     drawGeometrical(ctx, 200, canvasWidth, canvasHeight, 5, scale, dx, dy, 172);
   } else {
-    drawAlgebraic(ctx, canvasWidth, canvasHeight, scale, dx, dy, iterations, type, palette);
+    drawAlgebraic(
+      ctx,
+      canvasWidth,
+      canvasHeight,
+      scale,
+      dx,
+      dy,
+      iterations,
+      type,
+      palette
+    );
   }
 }

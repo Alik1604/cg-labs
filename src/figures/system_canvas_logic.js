@@ -8,8 +8,6 @@ export const drawCanvas = (canvasRef, inputs) => {
     const width = canvas.width;
     const height = canvas.height;
 
-    // console.log(canvas.width + " " + canvas.height + " " + originX + " " + originY)
-
     ctx.clearRect(0, 0, width, height);
 
     let scaleX = inputs.scaleX
@@ -36,15 +34,11 @@ export const drawCanvas = (canvasRef, inputs) => {
     if (oneLengthY === 0) oneLengthY = defaultOneLengthPx
 
     const originX = width / 2 + +inputs.x * oneLengthX;
-    const originY = height / 2 + +inputs.y * oneLengthY;
-
-    console.log(1)
+    const originY = height / 2 - +inputs.y * oneLengthY;
 
     drawCanvasGrid(ctx, originX, originY, width, height, oneLengthX, oneLengthY)
-    console.log(2)
 
     drawCanvasTexts(ctx, originX, originY, width, height, oneLengthX, oneLengthY, scaleX, scaleY)
-    console.log(3)
 
     return {
         originX,
