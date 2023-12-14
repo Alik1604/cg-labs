@@ -11,6 +11,7 @@ import {
   getNewPixelsArray,
   drawPixelsArrayOnCanvas,
 } from "@/images/utils/pixels_changer";
+import ChatComponent from "@/components/chat";
 
 const maxCanvasWidth = 640;
 const maxCanvasHeight = 360;
@@ -201,7 +202,7 @@ const Images: React.FC = () => {
   return (
     <main className="flex min-h-screen flex-row bg-white">
       <Navigation />
-
+      <ChatComponent />
       <div
         className="flex flex-col flex-grow p-12 bg-[#108A000D]"
         style={{

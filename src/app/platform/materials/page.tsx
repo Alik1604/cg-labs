@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Navigation from "@/components/navigation";
 import Link from "next/link";
+import ChatComponent from "@/components/chat";
 
 export default function EducationalMaterials() {
   const [materials, setMaterials] = useState([
@@ -47,7 +48,7 @@ export default function EducationalMaterials() {
   return (
     <main className="flex min-h-screen flex-row bg-white">
       <Navigation />
-
+      <ChatComponent />
       <div className="flex min-h-screen w-[80%] bg-[#108A000D]  p-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {materials.map((material) => (

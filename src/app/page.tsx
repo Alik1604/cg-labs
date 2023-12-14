@@ -5,6 +5,7 @@ import FractalCanvas from "../fractals/fractal_canvas";
 import Slider from "../components/slider";
 import { Dropdown } from "flowbite-react";
 import Navigation from "@/components/navigation";
+import ChatComponent from "@/components/chat";
 
 export default function Home() {
   const [scaleValue, setScaleValue] = useState(0);
@@ -15,7 +16,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-row bg-white">
-      <Navigation/>
+      <ChatComponent />
+      <Navigation />
 
       <div className="flex min-h-screen w-[80%] bg-[#108A000D] justify-center items-center p-12">
         <div className=" w-[80%] h-[100%] items-center justify-center flex">
