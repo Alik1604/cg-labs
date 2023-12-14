@@ -203,7 +203,7 @@ const Images: React.FC = () => {
       <Navigation />
 
       <div
-        className="flex flex-col flex-grow p-12"
+        className="flex flex-col flex-grow p-12 bg-[#108A000D]"
         style={{
           color: "black",
         }}
@@ -257,14 +257,14 @@ const Images: React.FC = () => {
               }
             }}
           >
-            Clear selection
+            Очистити
           </button>
           <button
             onClick={handleSave}
             type="button"
             className="w-[100px] h-[40px] focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
           >
-            Save
+            Зберегти
           </button>
         </div>
         <div className="flex justify-between my-4">

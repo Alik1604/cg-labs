@@ -10,10 +10,10 @@ export default async function Page({ params }: any) {
   const data = JSON.parse(file);
 
   return (
-    <main className="flex min-h-screen flex-row bg-white">
+    <main className="flex max-h-screen flex-row bg-white">
       <Navigation />
 
-      <div className="flex min-h-screen w-[80%] bg-[#108A000D]  p-12 text-black">
+      <div className="flex w-[80%] bg-[#108A000D] p-12 text-black overflow-scroll">
         <Materials data={data} />
       </div>
     </main>

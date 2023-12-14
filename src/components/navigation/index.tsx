@@ -24,7 +24,7 @@ function Navigation() {
         <Link href="/platform/transformations" className="flex">
           <button className="bg-white p-4 flex flex-grow flex-row gap-3 text-white rounded-xl border border-[#108A00] items-center">
             <Image src="/icons/transform.svg" alt="" width={24} height={24} />
-            <p className="text-black">Ручні зображення</p>
+            <p className="text-black">Афінні перетворення</p>
           </button>
         </Link>
         <Link href="/platform/materials" className="flex">

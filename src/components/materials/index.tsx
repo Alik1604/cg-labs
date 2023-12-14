@@ -21,7 +21,13 @@ export default function Materials({ data }: any) {
         {data.content.map((item: any, index: React.Key | null | undefined) => (
           <p key={index}>{item.paragraph}</p>
         ))}
-
+        <img
+          style={{
+            width: 600,
+            alignSelf: "center",
+          }}
+          src={data.img}
+        />
         <div className="flex gap-4 flex-col">
           {data.tests.map((test: any, index: React.Key | null | undefined) => (
             <div key={index}>
